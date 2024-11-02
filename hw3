@@ -1,0 +1,321 @@
+lc;
+clear;
+close all;
+syms z
+figure
+subplot(2,2,1);
+y1=sinh(log(z.^2+1))-1j^1j==0;
+S1=solve(y1,z);
+zplane(S1,[]);
+title("roots of f(z)");
+y2=z.^7-2*z+1==0;
+S2=solve(y2,z);
+subplot(2,2,2);
+zplane(double(S2),[]);
+title("roots of g(z)");
+subplot(2,2,3);
+y3=cos(sqrt(4)*z)-1i^1i+2*1i==0;
+S3=solve(y3,z);
+zplane(S3,[]);
+title("roots of h(z)");
+subplot(2,2,4);
+y4=cosh(z.^2)-sqrt(2*1i)==0;
+S4=solve(y4,z);
+zplane(S4,[]);
+title("roots of I(z)");
+disp("roots of f(z)"+string(double(S1)));
+disp("roots of g(z)"+string(double(S2)));
+disp("roots of h(z)"+string(double(S3)));
+disp("roots of I(z)"+string(double(S4)));
+
+
+question 2
+
+clear;
+clc;
+close all;
+%first part
+syms x y real
+z=x+1i*y;
+f=(exp((z.^2/2).*1i)-exp(-(z.^2/2).*1i))/(2*1i*(z.^2/2));
+fr1=real(f);
+fr=simplify(rewrite(real(f),"sincos"));
+fi=simplify(rewrite(imag(f),"sin"));
+harfr=simplify(diff(fr,2,x)+diff(fr,2,y));
+harfi=simplify(diff(fi,2,x)+diff(fi,2,y));
+%--------------------------------------coshi riman
+coshf1=simplify(diff(fr,x)-diff(fi,y));
+coshf2=simplify(diff(fr,y)+diff(fi,x));
+difF=simplify(diff(fr,x))+1i*diff(fi,x);
+disp("real of f is = "+string(fr));
+disp("imaginary part of f is ="+string(fi));
+disp("is real part of f harmonic? if yes the answer is 0 ="+string(harfr));
+disp("is the imaginary part of f harmonic? if yes the answer is 0 = "+string(harfi));
+disp("does f stisfy the conditions of cauchy riman? if yes the two following answers are 0 = "+string(coshf1)+"  "+string(coshf2));
+disp("f'(z)="+string(difF));
+figure
+subplot(2,1,1);
+fcontour(fr);
+title("u(x,y)=c for f(z)");
+subplot(2,1,2);
+fcontour(fi);
+title("v(x,y)=k for f(z)");
+xlim([-20 20]);
+ylim([-20 20]);
+%--------------------------------------------------
+g=1./z;
+gr=real(g);
+gi=imag(g);
+hargr=simplify(diff(gr,2,x)+diff(gr,2,y));
+hargi=simplify(diff(gi,x,2)+diff(gi,y,2));
+%--------------------------------------coshi riman
+coshg1=simplify(diff(gr,x)-diff(gi,y));
+coshg2=simplify(diff(gr,y)+diff(gi,x));
+difg=simplify(diff(gr,x))+1i*diff(gi,x);
+disp("real of g = "+string(gr));
+disp("imaginary part of g = "+string(gi));
+disp("is real part of g harmonic? if yes the answer is 0 = "+string(hargr));
+disp("is the imaginary part of g harmonic? if yes the answer is 0 = "+string(hargi));
+disp("does g stisfy the conditions of cauchy riman? if yes the two following answers are 0 = "+string(coshg1)+"  "+string(coshg2));
+disp("g'(z)= "+string(difg));
+figure
+subplot(2,1,1);
+fcontour(gr);
+title("u(x,y)=c for g(z)");
+subplot(2,1,2);
+fcontour(gi);
+title("v(x,y)=k for g(z)");
+xlim([-20 20]);
+ylim([-20 20]);
+%-------------------------------------------------
+h=(z+1i).^5+z.^2+1;
+hr=real(h);
+hi=imag(h);
+harhr=simplify(diff(hr,x,2)+diff(hr,y,2));
+harhi=simplify(diff(hi,x,2)+diff(hi,y,2));
+%--------------------------------------coshi riman
+coshh1=simplify(diff(hr,x)-diff(hi,y));
+coshh2=simplify(diff(hr,y)+diff(hi,x));
+difh=simplify(diff(hr,x))+1i*diff(hi,x);
+disp("real of h = "+string(hr));
+disp("imaginary part of h = "+string(hi));
+disp("is real part of h harmonic? if yes the answer is 0 = "+string(harhr));
+disp("is the imaginary part of f harmonic? if yes the answer is 0 = "+string(harhi));
+disp("does h stisfy the conditions of cauchy riman? if yes the two following answers are 0 = "+string(coshh1)+"  "+string(coshh2));
+disp("h'(z)= "+string(difh));
+figure
+subplot(2,1,1);
+fcontour(hr);
+title("u(x,y)=c for h(z)");
+subplot(2,1,2);
+fcontour(hi);
+title("v(x,y)=k for h(z)");
+xlim([-20 20]);
+ylim([-20 20]);
+%---------------------------------------------------
+I=z+exp(1i*z);
+Ir=real(I);
+Ii=imag(I);
+harIr=simplify(diff(Ir,x,2)+diff(Ir,y,2));
+harIi=simplify(diff(Ii,x,2)+diff(Ii,y,2));
+%--------------------------------------coshi riman
+coshI1=simplify(diff(Ir,x)-diff(Ii,y));
+coshI2=simplify(diff(Ir,y)+diff(Ii,x));
+difI=simplify(diff(Ir,x))+1i*diff(Ii,x);
+disp("real of I = "+string(Ir));
+disp("imaginary part of I = "+string(Ii));
+disp("is real part of I harmonic? if yes the answer is 0 = "+string(harIr));
+disp("is the imaginary part of I harmonic? if yes the answer is 0 = "+string(harIi));
+disp("does I stisfy the conditions of cauchy riman? if yes the two following answers are 0 = "+string(coshI1)+"  "+string(coshI2));
+disp("I'(z)="+string(difI));
+figure
+subplot(2,1,1);
+fcontour(Ir);
+title("u(x,y)=c for I(z)");
+subplot(2,1,2);
+fcontour(Ii);
+title("v(x,y)=k for I(z)");
+xlim([-20 20]);
+ylim([-20 20]);
+بخش چهارم
+
+
+
+
+
+
+question 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+clear;
+clc;
+close all;
+Fun1=@(z) cos(z)./(z.*(z.^2+8));
+g=@(theta)2+3*cos(theta)+3*1i*sin(theta);
+gprime=@(theta)-3*sin(theta)+3*1i*cos(theta);
+I1=integral(@(t)Fun1(g(t)).*gprime(t),0,2*pi);
+disp("I1 = "+string(round(I1,3)));
+%-----------------------------------------------
+Fun2=@(z)sinh(z)./(z.^4);
+g1=@(theta)cos(theta)+1i*sin(theta);
+gprime1=@(theta)-sin(theta)+1i*cos(theta);
+I2=integral(@(t)Fun2(g1(t)).*gprime1(t),0,2*pi);
+disp("I2 = "+string(round(I2,3)));
+%-----------------------------------------------
+Fun3=@(z)(1-exp(z))./((z.^2).*((z-1).^2));
+g2=@(theta)2*cos(theta)+2*1i*sin(theta);
+gprime2=@(theta)-2*sin(theta)+2*1i*cos(theta);
+I3=integral(@(t)Fun3(g2(t)).*gprime2(t),0,2*pi);
+disp("I3 = "+string(round(I3,3)));
+FUN=@(z)1./(1-z);
+deri=functionCauchyDerivative(FUN,2,1);
+
+
+
+question 4
+%first part
+clear;
+clc;
+close all;
+originalIMG=imread("lines.png");
+figure
+imshow(originalIMG);
+transform=maketform('custom',2,2,[],@inverse_fcn ,[]);
+transformedIMG=imtransform(originalIMG,transform,'cubic','UData',[-1 1],'XData',[-8 8],'VData',[-0.5 0.5],'YData',[-6 6],...
+    'Size', [300 300], 'FillValues', 255 );
+
+figure
+imshow(transformedIMG);
+  دایره کامل نمیشوند چون نگاشت یک اینکه خط ها محدود هستند و تا بینهایت نمیروند و اینکه دو سر خط زاویه های برابری ندارند 
+%second part
+originalIMG2=imread("strawberry.png");
+figure
+imshow(originalIMG2);
+transform2=maketform('custom',2,2,[],@inverse_fcn2,[]);
+transformedIMG2=imtransform(originalIMG2,transform2,'cubic','UData',[-3 3],'XData',[-4 4],'VData',[-2 2],'YData',[-8 8],...
+    'Size', [150 150], 'FillValues', 255 );
+figure
+imshow(transformedIMG2);
+
+
+
+
+
+question 5
+%first part
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+question 6
+
+
+
+
+
+
+
+
+
+
+%first part
+syms x y
+u1=x+exp(y).*cos(x);
+v1=y-exp(y).*sin(x);
+figure
+subplot(2,1,1)
+fcontour(u1);
+title("khotoot ham potansiel");
+subplot(2,1,2)
+fcontour(v1);
+title("khotoot meydan");
+xlim([-20 20]);
+ylim([-20 20]);
+% second part
+u2=exp(x).*(x.*cos(y)-y.*sin(y));
+v2=exp(x).*((x+1).*sin(y)-sin(y)+y.*cos(y));
+figure
+subplot(2,1,1)
+fcontour(u2);
+title("khotoot ham potansiel");
+subplot(2,1,2)
+fcontour(v2);
+title("khotoot meydan");
+xlim([-20 20]);
+ylim([-20 20]);
+
+
+
+
+
+
+
+
+
+
+
+
+     
+
+function U=inverse_fcn(X,~)
+z=X(:,1)+1i*X(:,2);
+w=(1./z);
+U(:,2)=imag(w);
+U(:,1)=real(w);
+end
+function U=inverse_fcn2(X,~)
+z=complex(X(:,1),X(:,2));
+w=(z+1./z).*0.5;
+r = 1<= abs(z) & abs(z) <=4;
+w(~r) = complex(NaN,NaN);%az aks faqt r haye bein 1 ta 4 vh mipazirim  
+U(:,2)=imag(w);
+U(:,1)=real(w);
+end
+
+
+
+
+
+
+
+
+
+
+
+function df=functionCauchyDerivative(f,z0,n)
+F=@(z)f(z)./(z-z0).^(n+1);
+G=@(theta)z0+cos(theta)+1i*sin(theta);
+Gprime=@(theta)-sin(theta)+1i*cos(theta);
+df=factorial(n)/(2*pi*1i)*integral(@(t)F(G(t))
